@@ -24,7 +24,7 @@ namespace SshConfigParser.Tests
             result.ShouldNotBeNull();
             result.Type.ShouldEqual(NodeType.Directive);
             result.Before.ShouldEqual("");
-            result.After.ShouldEqual("\n");
+            result.After.ShouldEqual(Environment.NewLine);
             result.Param.ShouldEqual("Host");
             result.Separator.ShouldEqual(" ");
             result.Value.ShouldEqual("tahoe1");
@@ -32,14 +32,14 @@ namespace SshConfigParser.Tests
             var childConfig = result.Config;
             childConfig[0].Type.ShouldEqual(NodeType.Directive);
             childConfig[0].Before.ShouldEqual("  ");
-            childConfig[0].After.ShouldEqual("\n");
+            childConfig[0].After.ShouldEqual(Environment.NewLine);
             childConfig[0].Param.ShouldEqual("HostName");
             childConfig[0].Separator.ShouldEqual(" ");
             childConfig[0].Value.ShouldEqual("tahoe1.com");
 
             childConfig[1].Type.ShouldEqual(NodeType.Directive);
             childConfig[1].Before.ShouldEqual("  ");
-            childConfig[1].After.ShouldEqual("\n\n");
+            childConfig[1].After.ShouldEqual(Environment.NewLine + Environment.NewLine);
             childConfig[1].Param.ShouldEqual("Compression");
             childConfig[1].Separator.ShouldEqual(" ");
             childConfig[1].Value.ShouldEqual("yes");
@@ -54,7 +54,7 @@ namespace SshConfigParser.Tests
 
             n.Type.ShouldEqual(NodeType.Directive);
             n.Before.ShouldEqual("");
-            n.After.ShouldEqual("\n");
+            n.After.ShouldEqual(Environment.NewLine);
             n.Param.ShouldEqual("Host");
             n.Value.ShouldEqual("tahoe4");
 
@@ -63,14 +63,14 @@ namespace SshConfigParser.Tests
 
             c1.Type.ShouldEqual(NodeType.Directive);
             c1.Before.ShouldEqual("  ");
-            c1.After.ShouldEqual("\n");
+            c1.After.ShouldEqual(Environment.NewLine);
             c1.Param.ShouldEqual("HostName");
             c1.Separator.ShouldEqual("=");
             c1.Value.ShouldEqual("tahoe4.com");
 
             c2.Type.ShouldEqual(NodeType.Directive);
             c2.Before.ShouldEqual("  ");
-            c2.After.ShouldEqual("\n");
+            c2.After.ShouldEqual(Environment.NewLine);
             c2.Param.ShouldEqual("User");
             c2.Separator.ShouldEqual("=");
             c2.Value.ShouldEqual("keanu");
@@ -219,7 +219,7 @@ namespace SshConfigParser.Tests
             var result = config.FindNodeByHost("tahoe1");
             result.Type.ShouldEqual(NodeType.Directive);
             result.Before.ShouldEqual("");
-            result.After.ShouldEqual("\n");
+            result.After.ShouldEqual(Environment.NewLine);
             result.Param.ShouldEqual("Host");
             result.Separator.ShouldEqual(" ");
             result.Value.ShouldEqual("tahoe1");
@@ -227,7 +227,7 @@ namespace SshConfigParser.Tests
             var c1 = result.Config[0];
             c1.Type.ShouldEqual(NodeType.Directive);
             c1.Before.ShouldEqual("  ");
-            c1.After.ShouldEqual("\n");
+            c1.After.ShouldEqual(Environment.NewLine);
             c1.Param.ShouldEqual("HostName");
             c1.Separator.ShouldEqual(" ");
             c1.Value.ShouldEqual("tahoe1.com");
@@ -235,7 +235,7 @@ namespace SshConfigParser.Tests
             var c2 = result.Config[1];
             c2.Type.ShouldEqual(NodeType.Directive);
             c2.Before.ShouldEqual("  ");
-            c2.After.ShouldEqual("\n\n");
+            c2.After.ShouldEqual(Environment.NewLine + Environment.NewLine);
             c2.Param.ShouldEqual("Compression");
             c2.Separator.ShouldEqual(" ");
             c2.Value.ShouldEqual("yes");
@@ -244,7 +244,7 @@ namespace SshConfigParser.Tests
             result = config.FindNodeByHost("*");
             result.Type.ShouldEqual(NodeType.Directive);
             result.Before.ShouldEqual("");
-            result.After.ShouldEqual("\n");
+            result.After.ShouldEqual(Environment.NewLine);
             result.Param.ShouldEqual("Host");
             result.Separator.ShouldEqual(" ");
             result.Value.ShouldEqual("*");
@@ -252,7 +252,7 @@ namespace SshConfigParser.Tests
             c1 = result.Config[0];
             c1.Type.ShouldEqual(NodeType.Directive);
             c1.Before.ShouldEqual("  ");
-            c1.After.ShouldEqual("\n\n");
+            c1.After.ShouldEqual(Environment.NewLine + Environment.NewLine);
             c1.Param.ShouldEqual("IdentityFile");
             c1.Separator.ShouldEqual(" ");
             c1.Value.ShouldEqual("~/.ssh/id_rsa");
@@ -295,7 +295,7 @@ namespace SshConfigParser.Tests
 
             result.Type.ShouldEqual(NodeType.Directive);
             result.Before.ShouldEqual("");
-            result.After.ShouldEqual("\n");
+            result.After.ShouldEqual(Environment.NewLine);
             result.Separator.ShouldEqual(" ");
             result.Value.ShouldEqual("example2.com");
             var c1 = result.Config[0];
@@ -303,14 +303,14 @@ namespace SshConfigParser.Tests
 
             c1.Type.ShouldEqual(NodeType.Directive);
             c1.Before.ShouldEqual("  ");
-            c1.After.ShouldEqual("\n");
+            c1.After.ShouldEqual(Environment.NewLine);
             c1.Param.ShouldEqual("User");
             c1.Separator.ShouldEqual(" ");
             c1.Value.ShouldEqual("pegg");
 
             c2.Type.ShouldEqual(NodeType.Directive);
             c2.Before.ShouldEqual("  ");
-            c2.After.ShouldEqual("\n\n");
+            c2.After.ShouldEqual(Environment.NewLine + Environment.NewLine);
             c2.Param.ShouldEqual("IdentityFile");
             c2.Separator.ShouldEqual(" ");
             c2.Value.ShouldEqual("~/.ssh/id_rsa");
@@ -330,7 +330,7 @@ namespace SshConfigParser.Tests
             var result = cfg.FindNodeByHost("example3.com");
             result.Type.ShouldEqual(NodeType.Directive);
             result.Before.ShouldEqual("");
-            result.After.ShouldEqual("\n");
+            result.After.ShouldEqual(Environment.NewLine);
             result.Param.ShouldEqual("Host");
             result.Separator.ShouldEqual(" ");
             result.Value.ShouldEqual("example3.com");
@@ -338,7 +338,7 @@ namespace SshConfigParser.Tests
             var c1 = result.Config[0];
             c1.Type.ShouldEqual(NodeType.Directive);
             c1.Before.ShouldEqual("\t");
-            c1.After.ShouldEqual("\n\n");
+            c1.After.ShouldEqual(Environment.NewLine + Environment.NewLine);
             c1.Param.ShouldEqual("User");
             c1.Separator.ShouldEqual(" ");
             c1.Value.ShouldEqual("paul");
